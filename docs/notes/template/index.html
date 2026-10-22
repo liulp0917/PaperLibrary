@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="论文阅读和讨论交流笔记模板。">
+  <title>Reading Note Template · Paper Library</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../assets/css/notes.css">
+  <script src="../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="#references">References</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#summary">01 Summary</a>
+        <a href="#motivation">02 Motivation</a>
+        <a href="#method">03 Method</a>
+        <a href="#experiments">04 Experiments</a>
+        <a href="#assessment">05 Assessment</a>
+        <a href="#discussion">06 Discussion</a>
+        <a href="#takeaways">07 Takeaways</a>
+        <a href="#references">08 References</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading Note Template</p>
+          <h1>在这里填写论文标题</h1>
+          <p class="note-meta"><span>作者</span><span>会议 / 期刊</span><span>年份</span></p>
+          <div class="draft-banner">这是一份笔记模板。复制目录后，请替换标题、元数据和正文内容。</div>
+        </header>
+        <section class="note-section" id="summary"><h2>01. One-sentence Summary</h2><div class="callout"><strong>一句话总结</strong><p>这篇论文为了解决什么问题，提出了什么方法，得到了什么核心结果？</p></div></section>
+        <section class="note-section" id="motivation"><h2>02. Motivation</h2><h3>Research Problem</h3><p>描述研究背景、具体问题和应用价值。</p><h3>Gap</h3><p>现有方法为什么不够？作者希望填补什么空白？</p></section>
+        <section class="note-section" id="method"><h2>03. Method</h2><p>先描述整体框架，再依次解释关键模块、训练目标和推理流程。</p><div class="equation">L = L<sub>task</sub> + λL<sub>aux</sub></div><div class="callout callout--idea"><strong>我的理解</strong><p>用自己的语言解释方法为什么可能有效。</p></div></section>
+        <section class="note-section" id="experiments"><h2>04. Experiments</h2><ul><li>数据集：</li><li>Baselines：</li><li>主要指标：</li><li>核心结果：</li><li>消融实验：</li></ul></section>
+        <section class="note-section" id="assessment"><h2>05. Strengths & Limitations</h2><h3>Strengths</h3><ul><li>贡献是否清晰、可信且可复现？</li></ul><h3>Limitations</h3><ul><li>假设、数据、实验或评估有哪些限制？</li></ul><div class="callout callout--question"><strong>Open Questions</strong><p>记录尚未理解、希望验证或适合与他人讨论的问题。</p></div></section>
+        <section class="note-section" id="discussion"><h2>06. Discussion Log</h2><dl class="discussion"><dt>Q1</dt><dd>老师、同学或其他交流对象提出的问题。</dd><dt>A</dt><dd>讨论后的理解、补充证据或后续行动。</dd></dl></section>
+        <section class="note-section" id="takeaways"><h2>07. Takeaways</h2><ul><li>这篇论文对自己的研究有什么启发？</li><li>哪些方法值得复现或迁移？</li><li>下一步需要阅读哪些相关工作？</li></ul></section>
+        <section class="note-section" id="references"><h2>08. References</h2><ol><li><a href="#">Original Paper</a></li><li><a href="#">Official Code</a></li></ol></section>
+        <footer class="note-footer">Last updated: YYYY-MM-DD · Paper Reading Library</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+

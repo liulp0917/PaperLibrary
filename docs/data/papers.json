@@ -1,0 +1,28 @@
+[
+  {
+    "id": "agentic-fintech-survey",
+    "title": "Agentic FinTech: A Comprehensive Survey on AI Agents in Finance in the Era of LLMs",
+    "authors": ["Yaxiong Wu", "Yixuan Li"],
+    "year": 2026,
+    "venue": "SSRN",
+    "category": "Agentic Finance",
+    "method": "Survey",
+    "summary": "系统梳理金融智能体的能力、工作流、架构、优化方法与评测体系。",
+    "paper_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6136529",
+    "code_url": "https://github.com/agentic-fintech/Agentic_FinTech_Survey",
+    "data_url": "",
+    "notes_url": "notes/2026/agentic-fintech-survey/",
+    "status": "planned",
+    "discussed": false,
+    "read_date": "",
+    "last_discussed_at": "",
+    "discussion_count": 0,
+    "added_date": "2026-10-22",
+    "updated_date": "2026-10-22",
+    "doi": "10.2139/ssrn.6136529",
+    "arxiv_id": "",
+    "zotero_key": "",
+    "tags": ["AI Agents", "Finance", "Survey"]
+  }
+]
+
