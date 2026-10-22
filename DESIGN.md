@@ -216,6 +216,20 @@ docs/notes/<year>/<slug>/index.html
 
 Markdown Front Matter 保存标题、paper_id、更新时间和标签，正文专注内容。这样可以统一模板、全局改版并生成全文搜索索引。
 
+### 已落地：Meta 笔记同步
+
+当前已建立第一条 Markdown 到 HTML 的静态生成链路：
+
+```text
+D:\AAAAclasses\Meta\docs\literature-reading-notes\*.md
+                         ↓ scripts/sync_meta_notes.py
+sources/meta-notes/*.md                 # 原始笔记归档
+docs/notes/<year>/<paper-id>/index.html # 网页展示
+docs/data/papers.json                   # 论文元数据与阅读状态
+```
+
+同步脚本只处理经过人工筛选的映射表，不会自动把 Meta 中的全部文献公开。当前入选项均标记为 `reading`；再次同步会按 `id` 更新而不会重复添加。下一步可将脚本内的论文映射迁移为独立清单或 Markdown Front Matter，进一步减少维护成本。
+
 ## 10. 分阶段路线
 
 ### Phase 0：当前静态文库

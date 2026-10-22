@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Characterising Interventions in Causal Games 阅读笔记。">
+  <title>Characterising Interventions in Causal Games · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://proceedings.mlr.press/v244/mishra24a.html" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#bibliography">01 书目与版本</a><a href="#section-2">02 聚焦问题与文章结构</a><a href="#section-3">03 形式化贡献与证据</a><a href="#section-4">04 双读审稿结论</a><a href="#section-5">05 接到 Meta Dev</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Meta Research Note</p>
+          <h1>Characterising Interventions in Causal Games</h1>
+          <p class="note-meta"><span>Manuj Mishra, James Fox, Michael Wooldridge</span><span>UAI</span><span>2024</span></p>
+          <div class="draft-banner">状态：阅读中。由 Meta 双人独立阅读笔记同步，正式发表版本与所读版本的差异按下文说明核对。</div>
+        </header>
+        <section class="note-section" id="bibliography"><h2>01. 书目与阅读版本</h2><p><strong>书目与版本。</strong> Manuj Mishra、James Fox、Michael Wooldridge，<em>Characterising Interventions in Causal Games</em>，UAI 2024（第 40 届），PMLR 244:2560–2572，<a href="https://proceedings.mlr.press/v244/mishra24a.html" target="_blank" rel="noreferrer">官方 proceedings</a>。章节与定理核读<a href="https://arxiv.org/html/2406.09318" target="_blank" rel="noreferrer">arXiv:2406.09318 全文</a>；正式版与预印本不能无条件视作逐字相同。</p></section>
+        <section class="note-section" id="section-2"><h2>02. 聚焦问题与文章结构</h2><p>普通 <code>do()</code> 只说改了哪个变量，却未说明<strong>代理何时知道、是否有机会重新选策略</strong>。这种时序会改变博弈均衡和干预结果。§1 引言；§2 因果博弈背景；§3 四类原子干预与复合查询；§4 因果机制设计；§5 承诺博弈；§6 结论；附录给证明与承诺计算。</p></section><section class="note-section" id="section-3"><h2>03. 形式化贡献与证据</h2><p>因果博弈由机会、决策、效用变量和代理理性关系组成；理性关系可取最优反应/纳什均衡，不预设唯一均衡（§2）。§3.1 提出四种原语：替换对象层条件分布、改变机制/决策规则、增加变量、删除变量；定理 1 的“可靠且完备”指<strong>干预表达语言</strong>，不是从观察数据识别。§3.2 让每个代理只看见干预子集，依知情时序分阶段锁定或重算策略；定理 2 与算法 1 给查询分解。§4 用依赖路径和最小 hitting set 表述机制设计，§5 用小型承诺博弈展示不同披露/承诺时点可改变收益。<strong>本文主要是定理与教学例子，没有大规模市场实验。</strong></p></section><section class="note-section" id="section-4"><h2>04. 双读审稿结论</h2><p>两位阅读者强调：均衡/最优反应假设很强，LLM 与散户未必依此行动；多均衡的选择和大规模求解也未解决。原文 §3.2/§6 说明一般计算困难。即使四原语完备，也不意味着一个现实监管干预的反事实由历史价格数据可识别。小型承诺收益例子不能直接外推到连续订单簿。</p></section><section class="note-section" id="section-5"><h2>05. 接到 Meta Dev</h2><p>每个冲击实验写一个<strong>干预标签</strong>：改的是消息/交易规则/代理策略机制中的哪一层，什么时候实施，谁在何时知情，谁能重新优化。预公告交易税与交易中突然征税应视为不同处理；否则“相同政策”在不同模拟器里可能根本不是同一反事实。</p>
+<p><strong>证据定位：</strong><a href="https://proceedings.mlr.press/v244/mishra24a.html" target="_blank" rel="noreferrer">UAI 正式页</a>；<a href="https://arxiv.org/html/2406.09318" target="_blank" rel="noreferrer">原文 §2–6、定理 1–2、算法 1</a>。</p></section>
+        <footer class="note-footer">Status: Reading · Synced from Meta · 2026-10-22</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

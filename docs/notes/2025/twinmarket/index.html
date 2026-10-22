@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets 阅读笔记。">
+  <title>TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/5bf234ecf83cd77bc5b77a24ba9338b0-Abstract-Conference.html" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#bibliography">01 书目与版本</a><a href="#section-2">02 聚焦问题与文章结构</a><a href="#section-3">03 方法与主要发现</a><a href="#section-4">04 双读审稿结论</a><a href="#section-5">05 接到 Meta Dev</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Meta Research Note</p>
+          <h1>TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets</h1>
+          <p class="note-meta"><span>Yuzhe Yang, Yifei Zhang, Minghao Wu, Kaidi Zhang, Yunmiao Zhang, Honghai Yu, Yan Hu, Benyou Wang</span><span>NeurIPS</span><span>2025</span></p>
+          <div class="draft-banner">状态：阅读中。由 Meta 双人独立阅读笔记同步，正式发表版本与所读版本的差异按下文说明核对。</div>
+        </header>
+        <section class="note-section" id="bibliography"><h2>01. 书目与阅读版本</h2><p><strong>书目与阅读版本。</strong> Yuzhe Yang 等，<em>TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets</em>，NeurIPS 2025 Main Conference，<em>Advances in Neural Information Processing Systems</em> 38，<a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/5bf234ecf83cd77bc5b77a24ba9338b0-Abstract-Conference.html" target="_blank" rel="noreferrer">官方会议条目</a>。本笔记的章节和补充实验以<a href="https://arxiv.org/html/2502.01506v5" target="_blank" rel="noreferrer">arXiv v5（2025-10-18）</a>为准，版本差异需在引用时核对。</p></section>
+        <section class="note-section" id="section-2"><h2>02. 聚焦问题与文章结构</h2><p>问题是：BDI（信念—欲望—意图）认知、异质交易者及动态社交网络，能否从个体行为涌现 A 股的价格与传播现象？§1–2 动机与相关工作；§3 系统、BDI、社交；§4 微观/宏观验证；§5 自我实现预言与信息传播；§6 消融；§7 扩展性；§8 结论；附录 A–F 覆盖基线、敏感性、数据、画像、撮合和提示词。</p></section><section class="note-section" id="section-3"><h2>03. 方法与主要发现</h2><p>§3 表 2 使用雪球 639 用户、11,965 笔交易建立画像，股吧 83,246 条用于推荐，另用 CSMAR 2023 行情/新闻。核心场景为 100 个 GPT-4o 代理、约五个月；社交图按交易相似性与时间衰减建边，再按热度/相似性曝光帖子。A 股规则有 ±10% 涨跌幅，但<strong>每天只用一次集合竞价</strong>（附录 E.5）。§4 表 3 讨论交易频率与收益；表 4 对比峰度、所谓“杠杆效应”、量价和 GARCH；§6 表 5 中完整模型价格路径 Corr=.77，去 BDI 降至 .34，去异质性为 -.61；§5 谣言实验报告估值下降、卖买比上升；§7 测 1000 人及激活比例。</p></section><section class="note-section" id="section-4"><h2>04. 双读审稿结论</h2><p>两个阅读者独立指出同一关键问题：表 4 把“杠杆效应”实际测为<strong>负收益的滞后关系</strong>，并不等同标准的“当前回报与未来波动”不对称；量价关系只报告显著性 <code>p&lt;.01</code>，没有效应量，不能据此比较拟合优劣。附录 B.3 每模型仅约三次运行，若干指标相对标准差较大。交易相似性既用于建图又用于解释群聚行为，存在构造性同质偏差；谣言实验同时改消息内容、情绪和曝光，不能单独识别网络传播。作者 §8 自承 A 股单市场、单日集合竞价、零和假设；在连续竞价市场上的外推未被证明。宏观事实吻合不等于人类个体行为或因果传播机制已辨识。</p></section><section class="note-section" id="section-5"><h2>05. 接到 Meta Dev</h2><p>可借鉴 BDI 状态日志与社交曝光，但要冻结处理前网络并随机化<strong>同内容消息的曝光图谱</strong>；使用现有连续竞价与集合竞价双制度检验效应方向是否迁移。价格统计重算标准“杠杆效应”及量价效应量，并设置不参与校准的路径。</p>
+<p><strong>证据定位：</strong><a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/5bf234ecf83cd77bc5b77a24ba9338b0-Abstract-Conference.html" target="_blank" rel="noreferrer">NeurIPS 官方条目</a>；<a href="https://arxiv.org/html/2502.01506v5" target="_blank" rel="noreferrer">扩充版 §3–8、表 2–5、附录 B.3/E.5</a>。</p></section>
+        <footer class="note-footer">Status: Reading · Synced from Meta · 2026-10-22</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Limits of Predicting Agents from Behaviour 阅读笔记。">
+  <title>The Limits of Predicting Agents from Behaviour · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://proceedings.mlr.press/v267/bellot25a.html" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#bibliography">01 书目与版本</a><a href="#section-2">02 聚焦问题与文章结构</a><a href="#section-3">03 理论贡献与证据</a><a href="#section-4">04 双读审稿结论</a><a href="#section-5">05 接到 Meta Dev</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Meta Research Note</p>
+          <h1>The Limits of Predicting Agents from Behaviour</h1>
+          <p class="note-meta"><span>Alexis Bellot, Jonathan Richens, Tom Everitt</span><span>ICML</span><span>2025</span></p>
+          <div class="draft-banner">状态：阅读中。由 Meta 双人独立阅读笔记同步，正式发表版本与所读版本的差异按下文说明核对。</div>
+        </header>
+        <section class="note-section" id="bibliography"><h2>01. 书目与阅读版本</h2><p><strong>书目与版本。</strong> Alexis Bellot、Jonathan Richens、Tom Everitt，<em>The Limits of Predicting Agents from Behaviour</em>，ICML 2025，PMLR 267:3623–3658，<a href="https://proceedings.mlr.press/v267/bellot25a.html" target="_blank" rel="noreferrer">官方 proceedings</a>。章节与定理核读<a href="https://arxiv.org/html/2506.02923" target="_blank" rel="noreferrer">arXiv:2506.02923 全文</a>。</p></section>
+        <section class="note-section" id="section-2"><h2>02. 聚焦问题与文章结构</h2><p>即使一个代理在训练环境中有正确的内部世界模型，<strong>仅看其历史行为</strong>，能否确定它在未见干预或制度下的最优行动？§1 引言；§2 SCM；§3 内部模型、目标与 grounding；§4 可预测性的界（已知干预、未知迁移、主观公平/伤害）；§5 放松强假设；§6 结论；附录给构造例子与证明。</p></section><section class="note-section" id="section-3"><h2>03. 理论贡献与证据</h2><p>“Grounding” 比拟合历史报价强得多：代理内部模型对每个动作干预预测的结果分布，应等于训练环境中的真实分布（§3 定义 3）；另需效用已知、动作正值性及最优/近似最优等条件。§4 把<strong>弱预测</strong>定义为可排除至少一个行动，<strong>强预测</strong>定义为所有兼容模型给同一唯一最优行动。定理 1 给已知新干预下弱预测的必要充分条件；定理 2 说明多训练/干预环境能收紧界；定理 3 表明若新环境可以任意机制漂移、又没有迁移信息，则任一行动都不能被排除。本文是<strong>理论与构造性玩具例子</strong>，没有真实 LLM 或金融交易者实验。</p></section><section class="note-section" id="section-4"><h2>04. 双读审稿结论</h2><p>该文给的是“历史行为不足”的条件性上限，不是直接可套入金融市场的数值误差公式。假设已知效用、最优选择、内部模型 grounding、递归 SCM 与正值性已经很强；连续订单簿、价格反馈和群体适应须进一步时间展开。若这些强假设仍允许相反的新制度行为，那么只靠历史行为拟合就宣称“识别了代理偏好”尤其站不住脚。文本自述也不自动等于真实内部信念。</p></section><section class="note-section" id="section-5"><h2>05. 接到 Meta Dev</h2><p>保留多个在训练价格/订单路径上观测等价的代理机制，对未见交易税、涨跌停或流动性冲击并行预测；若行动或政策效应分歧，只报告可识别集合并设计能区分模型的新实验。不要把论文纯理论界冒充已在金融场景验证的经验规律。</p>
+<p><strong>证据定位：</strong><a href="https://proceedings.mlr.press/v267/bellot25a.html" target="_blank" rel="noreferrer">ICML 官方页</a>；<a href="https://arxiv.org/html/2506.02923" target="_blank" rel="noreferrer">全文 §3–6、定义 3–5、定理 1–4</a>。</p></section>
+        <footer class="note-footer">Status: Reading · Synced from Meta · 2026-10-22</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

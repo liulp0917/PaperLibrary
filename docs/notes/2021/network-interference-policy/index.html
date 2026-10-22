@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Causal Inference under Networked Interference and Intervention Policy Enhancement 阅读笔记。">
+  <title>Causal Inference under Networked Interference and Intervention Policy Enhancement · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://proceedings.mlr.press/v130/ma21c.html" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#bibliography">01 书目与版本</a><a href="#section-2">02 聚焦问题与文章结构</a><a href="#section-3">03 方法与证据</a><a href="#section-4">04 双读审稿结论</a><a href="#section-5">05 接到 Meta Dev</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Meta Research Note</p>
+          <h1>Causal Inference under Networked Interference and Intervention Policy Enhancement</h1>
+          <p class="note-meta"><span>Yunpu Ma, Volker Tresp</span><span>AISTATS</span><span>2021</span></p>
+          <div class="draft-banner">状态：阅读中。由 Meta 双人独立阅读笔记同步，正式发表版本与所读版本的差异按下文说明核对。</div>
+        </header>
+        <section class="note-section" id="bibliography"><h2>01. 书目与阅读版本</h2><p><strong>书目。</strong> Yunpu Ma、Volker Tresp，<em>Causal Inference under Networked Interference and Intervention Policy Enhancement</em>，AISTATS 2021，PMLR 130:3700–3708，<a href="https://proceedings.mlr.press/v130/ma21c.html" target="_blank" rel="noreferrer">官方论文页</a>与<a href="https://proceedings.mlr.press/v130/ma21c/ma21c.pdf" target="_blank" rel="noreferrer">原文 PDF</a>。</p></section>
+        <section class="note-section" id="section-2"><h2>02. 聚焦问题与文章结构</h2><p>在处理会影响邻居结果、SUTVA 失效的图上，怎样估计个体自身处理与网络暴露效应，并在处理名额有限时优化政策？§1 动机；§2 GNN 因果模型、平衡、直接/溢出估计；§3 容量约束政策与 regret 界；§4 半合成/观察性实验；§5 结论。</p></section><section class="note-section" id="section-3"><h2>03. 方法与证据</h2><p>模型让节点结果取决于自身处理、协变量、邻域处理和图，使用 GCN/GraphSAGE/1-GNN 汇聚邻居，以双输出头预测处理/未处理结果；HSIC 等平衡项减少表示与处理的依赖（§2）。政策目标计入自身与网络溢出收益，理论界依赖最大节点度，因此稠密图更难（§3）。§4 的 Wave1 图由个体特征构造对称 kNN 边，Pokec 使用网络资料；两者都<strong>合成植入处理与结果机制</strong>，所以可测 PEHE 和政策真值，不是对真实因果效应的验证。Amazon 商品共购/评论例子无真实个体反事实，只能按学得模型评价或用匹配近似，不能宣称现实政策福利已验证。</p></section><section class="note-section" id="section-4"><h2>04. 双读审稿结论</h2><p>其暴露建模主要围绕固定图与局部邻域，而金融市场有一条几乎连接所有人的<strong>共同价格通道</strong>。把全局价格隐藏在若干邻居边中，会违反局部干扰假设；把邻居处理比例与特征设为零求“孤立直接效应”，也可能落到训练分布外。Amazon 评论数作为处理还强烈受质量/销量混杂。若政策由同一预测模型优化又由它评估，可能产生优化者诅咒；必须与真正植入的仿真真值区分。</p></section><section class="note-section" id="section-5"><h2>05. 接到 Meta Dev</h2><p>在已知反事实的模拟器里做 GNN/GPS/双重稳健估计器恢复比赛，同时显式加入价格共享节点；分别报告社交图局部传播与全局价格反馈。市场复制体而非订单是主随机化单位，不能直接套用本论文的局部网络识别结论。</p>
+<p><strong>证据定位：</strong><a href="https://proceedings.mlr.press/v130/ma21c.html" target="_blank" rel="noreferrer">AISTATS 正式条目</a>；<a href="https://proceedings.mlr.press/v130/ma21c/ma21c.pdf" target="_blank" rel="noreferrer">原文 §2–4、式 2–4、定理 1、表 1–4</a>。</p></section>
+        <footer class="note-footer">Status: Reading · Synced from Meta · 2026-10-22</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
