@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PI-INN 贝叶斯逆问题精读：多解后验、ABC 对照与 Meta 校准启示。">
+  <title>PI-INN：从单点反演到多解后验 · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../#library">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://arxiv.org/html/2304.12541" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#question">01 核心问题</a><a href="#method">02 可逆反演</a><a href="#evidence">03 后验证据</a><a href="#assumptions">04 假设边界</a><a href="#meta">05 接到 Meta</a><a href="#talk">06 分享提纲</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Bayesian Inverse Problems</p>
+          <h1>PI-INN：同一个观测，为何对应多个解？</h1>
+          <p class="note-meta"><span>Xiaofei Guan et al.</span><span>arXiv</span><span>2023</span></p>
+          <div class="draft-banner">状态：阅读中 · 精读 §2、§3.1–3.3、§4.1 与 Appendix D.1.1</div>
+        </header>
+
+        <section class="note-section" id="question">
+          <h2>01. 逆问题首先是识别问题</h2>
+          <p>论文从贝叶斯逆问题出发：参数 <em>λ</em> 经前向物理模型生成可观测量，目标是获得后验 <em>p(λ | observation)</em>。稀疏观测会丢失信息，使前向映射多对一；此时“最小误差参数”只是众多可行解之一。</p>
+          <div class="callout callout--idea"><strong>最简单的例子</strong><p>逆运动学用四个输入变量控制二维末端坐标。维度已经说明一个末端点通常对应许多关节配置；不确定性不是优化失败，而是问题本身不可识别。</p></div>
+        </section>
+
+        <section class="note-section" id="method">
+          <h2>02. 可逆网络如何保存多解</h2>
+          <figure class="paper-figure">
+            <img src="figures/figure-3.png" alt="PI-INN architecture from Figure 3" loading="lazy">
+            <figcaption>原文 Figure 3。INN 把参数分成决定前向解的系数 c 与潜变量 z；NB-Net 学习空间基函数。蓝色为训练，绿色为反向采样。<a href="https://arxiv.org/html/2304.12541" target="_blank" rel="noreferrer">查看原文</a></figcaption>
+          </figure>
+          <p>模型通过可逆映射把参数变换为 <em>(c, z)</em>：<em>c</em> 连接观测与前向解，<em>z</em> 承载观测未识别的自由度。训练要求 <em>z</em> 服从标准高斯并与 <em>c</em> 独立；反演时固定由观测得到的 <em>c</em>，反复采样 <em>z</em>，即可生成一组后验参数样本。</p>
+        </section>
+
+        <section class="note-section" id="evidence">
+          <h2>03. 证据不是一个误差数字，而是联合分布</h2>
+          <figure class="paper-figure paper-figure--wide">
+            <img src="figures/figure-5.png" alt="Posterior samples compared with ABC in Figure 5" loading="lazy">
+            <figcaption>原文 Figure 5。对角线为四个参数的边际直方图，下三角为样本散点，上三角为二维密度；ABC 与两种 INN 的联合几何可直接比较。<a href="https://arxiv.org/html/2304.12541" target="_blank" rel="noreferrer">查看原文</a></figcaption>
+          </figure>
+          <p>这张 pair plot 同时显示边际宽度、参数相关、弯曲可行域和多模态结构。作者以拒绝采样 ABC 作为参照：从先验采样，经前向模型计算，若输出与观测的 L2 距离小于 0.035 就接受，直至得到 2000 个样本。ABC 仍依赖先验、摘要和容差，因此应称为近似基准，而非无条件真值。</p>
+        </section>
+
+        <section class="note-section" id="assumptions">
+          <h2>04. 哪些条件不能被图表掩盖</h2>
+          <ul>
+            <li>后验由先验、观测模型和前向机制共同定义；换先验可能换结论。</li>
+            <li>准确反演依赖前向解与基函数表示足够准确。</li>
+            <li>c 与 z 的独立、z 的高斯性是关键训练假设。</li>
+            <li>无噪声例中似然难写，ABC 容差实际定义了“近似相同”的范围。</li>
+          </ul>
+        </section>
+
+        <section class="note-section" id="meta">
+          <h2>05. 接到 Meta：不要把一次最优校准当成识别</h2>
+          <p>同一组收益厚尾、波动聚集和量价统计，可能由不同的代理比例、记忆长度、风险偏好、网络结构或冲击过程生成。Meta 的校准结果应同时报告参数边际后验、关键参数 pair plot、后验预测区间，以及多组可行机制在冲击场景中的分叉。</p>
+          <div class="callout callout--question"><strong>当前缺口</strong><p>需要明确参数先验、五事实之间的距离权重、抽样误差、观测噪声和参考后验；否则“后验”只是在隐含假设下的可行配置集合。</p></div>
+        </section>
+
+        <section class="note-section" id="talk">
+          <h2>06. 三分钟分享稿</h2>
+          <p>PI-INN 最值得带回 Meta 的不是立即照搬网络，而是改变结果形式：校准是多对一逆问题，应返回一组带权机制解释，而不是一个最佳参数。论文用四维姿态到二维端点的例子把这一点讲得很直观，并用边际直方图、两两散点和密度展示完整后验几何。对于 Meta，下一步应先用 ABC/SBI 建立多解基线，再讨论可逆网络是否值得用于加速。</p>
+        </section>
+
+        <footer class="note-footer">Status: Reading · Group meeting note · 2026-10-26</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

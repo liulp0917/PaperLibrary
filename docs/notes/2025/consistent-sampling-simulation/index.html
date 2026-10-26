@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NeurIPS 2025 一致性论文精读：区分正确独立采样与错误递归模拟。">
+  <title>看起来像与跑起来对 · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../#library">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://papers.nips.cc/paper_files/paper/2025/file/231be94eaf8dcbc49a95b256c9b6b8b5-Paper-Conference.pdf" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#split">01 两条路径</a><a href="#toy">02 最小反例</a><a href="#method">03 一致性约束</a><a href="#evidence">04 实验</a><a href="#meta">05 三层验证</a><a href="#talk">06 分享提纲</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · NeurIPS 2025</p>
+          <h1>“看起来像”与“跑起来对”是怎样分离的？</h1>
+          <p class="note-meta"><span>Michael Plainer et al.</span><span>NeurIPS</span><span>2025</span></p>
+          <div class="draft-banner">状态：阅读中 · 精读引言、§3、二维玩具例与 Figure 2</div>
+        </header>
+
+        <section class="note-section" id="split">
+          <h2>01. 同一模型的两条使用路径</h2>
+          <p>完整反向扩散可生成独立样本 p(x)；把 t=0 的 score 解释为势能力并运行 Langevin 动力学，则得到 p₀(x)。理论上两者应一致，实践中却可能分离：训练平均目标允许小时间端点出现误差，局部误差在递归模拟中累积。</p>
+        </section>
+
+        <section class="note-section" id="toy">
+          <h2>02. 最小反例：样本是对的，力是错的</h2>
+          <figure class="paper-figure">
+            <img src="figures/figure-1.png" alt="Sampling and simulation inconsistency in a 2D toy example" loading="lazy">
+            <figcaption>原文 Figure 1。普通去噪采样恢复两个目标模态，但 t=0 score 导出的密度产生第三个伪模态；加入 Fokker–Planck 正则后两者一致。<a href="https://papers.nips.cc/paper_files/paper/2025/file/231be94eaf8dcbc49a95b256c9b6b8b5-Paper-Conference.pdf" target="_blank" rel="noreferrer">查看原文</a></figcaption>
+          </figure>
+          <p>这个二维例子把论点压到最小：只看 iid 样本会判定模型通过；把模型当作局部力反复推进，却得到错误稳态。一次预测中的小误差不显眼，递推后会改变概率质量甚至创造不存在的状态。</p>
+        </section>
+
+        <section class="note-section" id="method">
+          <h2>03. Fokker–Planck 正则在约束什么</h2>
+          <p>作者在去噪损失之外惩罚 Fokker–Planck 方程残差，使不同扩散时间上的密度变化属于同一个合法随机过程。正则重点作用于最容易不稳定的小时间区域。对 Meta 的启示不是照搬方程，而是为递归运行的转移算子增加过程一致性约束。</p>
+          <div class="callout callout--idea"><strong>关键取舍</strong><p>更强的一致性正则可以改善 simulation，却可能轻微降低 iid sample 指标。静态拟合与动力学拟合应并列报告，而不是揉成一个总分。</p></div>
+        </section>
+
+        <section class="note-section" id="evidence">
+          <h2>04. 复杂系统仍出现同一种分离</h2>
+          <figure class="paper-figure paper-figure--wide">
+            <img src="figures/figure-2.png" alt="Comparison of iid sampling and Langevin simulation" loading="lazy">
+            <figcaption>原文 Figure 2。普通 diffusion 的 iid 结果接近参考分布，但用 learned score 运行 simulation 后明显偏离；正则化模型的两条路径更一致。<a href="https://papers.nips.cc/paper_files/paper/2025/file/231be94eaf8dcbc49a95b256c9b6b8b5-Paper-Conference.pdf" target="_blank" rel="noreferrer">查看原文</a></figcaption>
+          </figure>
+        </section>
+
+        <section class="note-section" id="meta">
+          <h2>05. 翻译成 Meta 的三个验证层次</h2>
+          <div class="validation-grid">
+            <article><span>01</span><h3>五事实</h3><p>检验无条件样本的收益尾部、波动聚集、成交量与横截面分布。这只对应“看起来像”。</p></article>
+            <article><span>02</span><h3>订单转移</h3><p>检验给定价差、深度、库存和代理状态后的下一步订单类型、方向、成交与撤单分布。</p></article>
+            <article><span>03</span><h3>冲击响应</h3><p>固定新闻或流动性冲击，重复整条路径，比较峰值、半衰期、超调和跨资产传播。</p></article>
+          </div>
+          <p>第一层通过不能推出第二、三层正确。Meta 作为模拟器使用时，代理、订单和市场状态持续反馈，因此转移核和递归路径必须单独验收。</p>
+        </section>
+
+        <section class="note-section" id="talk">
+          <h2>06. 三分钟分享稿</h2>
+          <p>这篇论文最重要的不是某个扩散技巧，而是一个验证反例：一个模型能生成正确的独立样本，却导出错误的长期动力学。对应到 Meta，五事实只是 iid 侧证据；订单状态转移和冲击响应属于 process 侧。后续版本应把三层指标分开呈现，并检查递归运行后的稳态漂移。</p>
+        </section>
+
+        <footer class="note-footer">Status: Reading · Group meeting note · 2026-10-26</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

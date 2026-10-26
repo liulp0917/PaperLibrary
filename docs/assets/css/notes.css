@@ -33,6 +33,16 @@ body { background-size: 52px 52px; }
 .discussion { display: grid; grid-template-columns: auto 1fr; gap: 0.7rem 1rem; margin: 1rem 0; }
 .discussion dt { color: var(--gold); font-family: var(--serif); font-weight: 700; }
 .discussion dd { margin: 0; color: var(--muted); }
+.paper-figure { margin: 2rem 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.paper-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
+.paper-figure figcaption { border-top: 1px solid var(--line); background: var(--surface-soft); color: var(--muted); padding: 0.9rem 1rem; font-size: 0.82rem; line-height: 1.6; }
+.paper-figure figcaption a { color: var(--teal); }
+.paper-figure--wide { margin-inline: clamp(-4rem, -5vw, 0rem); }
+.validation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.5rem 0; }
+.validation-grid article { border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); padding: 1rem; }
+.validation-grid article > span { color: var(--gold); font-size: 0.7rem; letter-spacing: 0.12em; }
+.validation-grid h3 { margin: 0.45rem 0 0.55rem; }
+.validation-grid p { margin: 0; font-size: 0.86rem; }
 .note-footer { margin-top: 5rem; border-top: 1px solid var(--line); padding-top: 2rem; color: var(--quiet); }
 
 @media (max-width: 860px) {
@@ -40,6 +50,8 @@ body { background-size: 52px 52px; }
   .note-toc { position: static; display: flex; flex-wrap: wrap; gap: 0.5rem; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; }
   .note-toc strong { width: 100%; }
   .note-toc a { margin: 0; border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.65rem; }
+  .paper-figure--wide { margin-inline: 0; }
+  .validation-grid { grid-template-columns: 1fr; }
 }
 
 @media print {

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reaction Coordinate Flow 精读：保留未来信息、亚稳态与慢时间尺度的低维坐标。">
+  <title>Reaction Coordinate Flows 与市场压力坐标 · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../#library">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://arxiv.org/html/2309.05878" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#coordinate">01 反应坐标</a><a href="#flow">02 模型结构</a><a href="#loss">03 损失函数</a><a href="#timescale">04 慢时间尺度</a><a href="#market">05 市场转译</a><a href="#limits">06 假设边界</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Dynamical Model Reduction</p>
+          <h1>好的“市场压力坐标”应保存什么未来信息？</h1>
+          <p class="note-meta"><span>Hao Wu, Frank Noé</span><span>arXiv</span><span>2023</span></p>
+          <div class="draft-banner">状态：阅读中 · 精读 §II.1、§III.2 与 §IV.1</div>
+        </header>
+
+        <section class="note-section" id="coordinate">
+          <h2>01. 反应坐标是未来的充分统计量</h2>
+          <p>论文把高维状态 xₜ 看作 Markov 过程，动力学由时间滞后转移密度描述。理想反应坐标 zₜ = Φ(xₜ) 不以“解释多少当期方差”为标准，而以“保留多少预测 xₜ₊τ 的信息”为标准。这是它与 PCA 最根本的区别。</p>
+        </section>
+
+        <section class="note-section" id="flow">
+          <h2>02. 把动力学信息与剩余自由度分开</h2>
+          <figure class="paper-figure">
+            <img src="figures/figure-1.png" alt="Reaction coordinate flow architecture" loading="lazy">
+            <figcaption>原文 Figure 1。可逆流把高维状态分成反应坐标 z 与白噪声 v；低维动力学推进 z，再与新噪声一起还原高维状态。<a href="https://arxiv.org/html/2309.05878" target="_blank" rel="noreferrer">查看原文</a></figcaption>
+          </figure>
+          <p>Normalizing Flow 将 xₜ 映射为 (zₜ, vₜ)。zₜ 承载可预测动力学，vₜ 被建模为对未来无信息的标准高斯噪声。可逆性使模型能从低维转移重新构造高维条件分布，而不是只得到一个不可逆的压缩向量。</p>
+        </section>
+
+        <section class="note-section" id="loss">
+          <h2>03. 两类损失分别约束过程与静态分布</h2>
+          <ul>
+            <li><strong>Kinetic loss：</strong>对时间滞后转移对 (xₜ, xₜ₊τ) 的负对数似然，要求低维坐标保留未来转移。</li>
+            <li><strong>Equilibrium loss：</strong>对稳态样本的负对数似然，要求重构后的静态分布正确。</li>
+          </ul>
+          <p>这种拆分与“sampling versus simulation”相呼应：静态密度和转移动力学是两个不同的验收对象。</p>
+        </section>
+
+        <section class="note-section" id="timescale">
+          <h2>04. 好坐标应保留亚稳态与慢时间尺度</h2>
+          <figure class="paper-figure">
+            <img src="figures/figure-2.png" alt="Metastable states and implied timescales preserved by reaction coordinates" loading="lazy">
+            <figcaption>原文 Figure 2。二维势能面压缩为一维反应坐标后，势阱结构和主导 implied timescales 仍得到保留。<a href="https://arxiv.org/html/2309.05878" target="_blank" rel="noreferrer">查看原文</a></figcaption>
+          </figure>
+          <p>在可逆、平稳的 Brownian 动力学中，转移过程可分解为若干松弛模式。若存在谱隙，最大的几个 implied timescales 控制长期演化。一个合格的反应坐标应保留这些模式，而不只是重构当期状态。</p>
+        </section>
+
+        <section class="note-section" id="market">
+          <h2>05. 翻译成市场压力坐标</h2>
+          <p>好的市场压力坐标应预测未来流动性盆地、冲击恢复时间、跨资产传播和制度切换。普通 PCA 最大化同时点方差，可能遗漏低方差但慢且有预测力的方向；当期波动率也无法区分“压力仍在积累”与“同样波动但已经修复”的状态。</p>
+          <div class="callout callout--idea"><strong>可执行比较</strong><p>以 PCA、当期波动率和手工压力指数为基线，用时间滞后状态对学习动力学坐标；比较下一制度预测、冲击半衰期、implied timescales 和跨窗口稳定性。</p></div>
+        </section>
+
+        <section class="note-section" id="limits">
+          <h2>06. 市场中容易失效的假设</h2>
+          <dl class="discussion">
+            <dt>平稳</dt><dd>制度变化、宏观周期与参与者进入退出会改变稳态。</dd>
+            <dt>无外力</dt><dd>新闻、政策、熔断和强平应作为条件冲击显式建模。</dd>
+            <dt>时间可逆</dt><dd>信息到达、撮合耗散和杠杆瀑布具有明确时间箭头。</dd>
+            <dt>Markov</dt><dd>代理记忆、隐藏库存和长期订单拆分要求扩展状态。</dd>
+            <dt>Brownian</dt><dd>跳跃、厚尾和离散制度切换需要更一般的低维动力学。</dd>
+          </dl>
+          <p>因此应吸收“保留未来信息”的目标，而不是把分子系统的平衡、可逆和布朗假设直接移植到市场。</p>
+        </section>
+
+        <footer class="note-footer">Status: Reading · Group meeting note · 2026-10-26</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

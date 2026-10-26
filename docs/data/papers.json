@@ -388,5 +388,113 @@
       "Complex Systems",
       "Field Experiment"
     ]
+  },
+  {
+    "id": "pi-inn-bayesian-inverse-problems",
+    "title": "Efficient Bayesian Inference Using Physics-Informed Invertible Neural Networks for Inverse Problems",
+    "authors": [
+      "Xiaofei Guan",
+      "Xintong Wang",
+      "Hao Wu",
+      "Zihao Yang",
+      "Peng Yu"
+    ],
+    "year": 2023,
+    "venue": "arXiv",
+    "category": "Bayesian Inverse Problems",
+    "method": "Physics-Informed Invertible Neural Network",
+    "summary": "以可逆网络把观测可解释部分与潜在自由度分开，从单点反演转向多解后验分布。",
+    "paper_url": "https://arxiv.org/html/2304.12541",
+    "code_url": "",
+    "data_url": "",
+    "notes_url": "notes/2023/pi-inn-bayesian-inverse-problems/",
+    "status": "reading",
+    "discussed": false,
+    "read_date": "",
+    "last_discussed_at": "",
+    "discussion_count": 0,
+    "added_date": "2026-10-26",
+    "updated_date": "2026-10-26",
+    "doi": "",
+    "arxiv_id": "2304.12541",
+    "zotero_key": "",
+    "source_note": "sources/meta-notes/17-three-paper-validation-sharing.md",
+    "tags": [
+      "Bayesian Inference",
+      "Inverse Problems",
+      "Invertible Neural Networks",
+      "Uncertainty Quantification"
+    ]
+  },
+  {
+    "id": "consistent-sampling-simulation",
+    "title": "Consistent Sampling and Simulation: Molecular Dynamics with Energy-Based Diffusion Models",
+    "authors": [
+      "Michael Plainer",
+      "Hao Wu",
+      "Leon Klein",
+      "Stephan Günnemann",
+      "Frank Noé"
+    ],
+    "year": 2025,
+    "venue": "NeurIPS",
+    "category": "Generative Dynamics",
+    "method": "Energy-Based Diffusion + Fokker–Planck Regularization",
+    "summary": "揭示独立采样正确并不保证递归动力学正确，并以 Fokker–Planck 残差约束两者一致。",
+    "paper_url": "https://papers.nips.cc/paper_files/paper/2025/file/231be94eaf8dcbc49a95b256c9b6b8b5-Paper-Conference.pdf",
+    "code_url": "https://github.com/noegroup/ScoreMD",
+    "data_url": "",
+    "notes_url": "notes/2025/consistent-sampling-simulation/",
+    "status": "reading",
+    "discussed": false,
+    "read_date": "",
+    "last_discussed_at": "",
+    "discussion_count": 0,
+    "added_date": "2026-10-26",
+    "updated_date": "2026-10-26",
+    "doi": "",
+    "arxiv_id": "",
+    "zotero_key": "",
+    "source_note": "sources/meta-notes/17-three-paper-validation-sharing.md",
+    "tags": [
+      "Diffusion Models",
+      "Fokker–Planck",
+      "Sampling",
+      "Simulation Consistency"
+    ]
+  },
+  {
+    "id": "reaction-coordinate-flows",
+    "title": "Reaction Coordinate Flows for Model Reduction of Molecular Kinetics",
+    "authors": [
+      "Hao Wu",
+      "Frank Noé"
+    ],
+    "year": 2023,
+    "venue": "arXiv",
+    "category": "Dynamical Model Reduction",
+    "method": "Normalizing Flow + Reduced Kinetics",
+    "summary": "以时间滞后转移和慢松弛模式学习保留未来信息的低维反应坐标。",
+    "paper_url": "https://arxiv.org/html/2309.05878",
+    "code_url": "",
+    "data_url": "",
+    "notes_url": "notes/2023/reaction-coordinate-flows/",
+    "status": "reading",
+    "discussed": false,
+    "read_date": "",
+    "last_discussed_at": "",
+    "discussion_count": 0,
+    "added_date": "2026-10-26",
+    "updated_date": "2026-10-26",
+    "doi": "",
+    "arxiv_id": "2309.05878",
+    "zotero_key": "",
+    "source_note": "sources/meta-notes/17-three-paper-validation-sharing.md",
+    "tags": [
+      "Reaction Coordinate",
+      "Normalizing Flow",
+      "Model Reduction",
+      "Slow Dynamics"
+    ]
   }
 ]
