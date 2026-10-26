@@ -391,7 +391,7 @@
   },
   {
     "id": "pi-inn-bayesian-inverse-problems",
-    "title": "Efficient Bayesian Inference Using Physics-Informed Invertible Neural Networks for Inverse Problems",
+    "title": "Efficient Bayesian inference using physics-informed invertible neural networks for inverse problems",
     "authors": [
       "Xiaofei Guan",
       "Xintong Wang",
@@ -465,7 +465,7 @@
   },
   {
     "id": "reaction-coordinate-flows",
-    "title": "Reaction Coordinate Flows for Model Reduction of Molecular Kinetics",
+    "title": "Reaction coordinate flows for model reduction of molecular kinetics",
     "authors": [
       "Hao Wu",
       "Frank Noé"
