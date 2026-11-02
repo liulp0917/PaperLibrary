@@ -496,5 +496,71 @@
       "Model Reduction",
       "Slow Dynamics"
     ]
+  },
+  {
+    "id": "bh1998-heterogeneous-beliefs",
+    "title": "Heterogeneous beliefs and routes to chaos in a simple asset pricing model",
+    "authors": [
+      "William A. Brock",
+      "Cars H. Hommes"
+    ],
+    "year": 1998,
+    "venue": "Journal of Economic Dynamics and Control",
+    "category": "Heterogeneous Agent Models",
+    "method": "Adaptive Belief Systems",
+    "summary": "在现值资产定价中让交易者按过去利润切换预测，选择强度升高时价格离开基本面并出现分叉与混沌。",
+    "paper_url": "https://doi.org/10.1016/S0165-1889(98)00011-6",
+    "code_url": "",
+    "data_url": "",
+    "notes_url": "notes/1998/bh1998-heterogeneous-beliefs/",
+    "status": "reading",
+    "discussed": false,
+    "read_date": "",
+    "last_discussed_at": "",
+    "discussion_count": 0,
+    "added_date": "2026-11-02",
+    "updated_date": "2026-11-02",
+    "doi": "10.1016/S0165-1889(98)00011-6",
+    "arxiv_id": "",
+    "zotero_key": "",
+    "tags": [
+      "Brock-Hommes",
+      "Asset Pricing",
+      "Heterogeneous Beliefs",
+      "Case 1"
+    ]
+  },
+  {
+    "id": "bh1997-rational-route",
+    "title": "A Rational Route to Randomness",
+    "authors": [
+      "William A. Brock",
+      "Cars H. Hommes"
+    ],
+    "year": 1997,
+    "venue": "Econometrica",
+    "category": "Heterogeneous Agent Models",
+    "method": "Adaptive Rational Equilibrium",
+    "summary": "用公开的过去表现在一组预测之间做离散选择；高强度选择可以把蛛网价格推进混沌。",
+    "paper_url": "https://doi.org/10.2307/2171879",
+    "code_url": "",
+    "data_url": "",
+    "notes_url": "notes/1997/bh1997-rational-route/",
+    "status": "planned",
+    "discussed": false,
+    "read_date": "",
+    "last_discussed_at": "",
+    "discussion_count": 0,
+    "added_date": "2026-11-02",
+    "updated_date": "2026-11-02",
+    "doi": "10.2307/2171879",
+    "arxiv_id": "",
+    "zotero_key": "",
+    "tags": [
+      "Brock-Hommes",
+      "Intensity of Choice",
+      "Cobweb",
+      "Switching"
+    ]
   }
 ]

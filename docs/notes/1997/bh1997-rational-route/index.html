@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Rational Route to Randomness 阅读笔记。">
+  <title>A Rational Route to Randomness · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://doi.org/10.2307/2171879" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#bibliography">01 书目</a>
+        <a href="#role">02 它在这次阅读里的位置</a>
+        <a href="#read">03 打开时看什么</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">To Read · switching rule</p>
+          <h1>A Rational Route to Randomness</h1>
+          <p class="note-meta"><span>William A. Brock, Cars H. Hommes</span><span>Econometrica</span><span>1997</span></p>
+          <div class="draft-banner">状态：待读。这篇提供份额切换的规则。价格映射仍以 1998 年 JEDC 的 case 1 为准。</div>
+        </header>
+        <section class="note-section" id="bibliography">
+          <h2>01. 书目</h2>
+          <p>William A. Brock、Cars H. Hommes，<em>A Rational Route to Randomness</em>，Econometrica 65(5):1059–1095，1997 年 9 月，<a href="https://doi.org/10.2307/2171879" target="_blank" rel="noreferrer">DOI 10.2307/2171879</a>。学会页面：<a href="https://www.econometricsociety.org/publications/econometrica/1997/09/01/rational-route-randomness" target="_blank" rel="noreferrer">Econometric Society</a>。</p>
+        </section>
+        <section class="note-section" id="role">
+          <h2>02. 它在这次阅读里的位置</h2>
+          <p>份额切换属于论文机制，不是平台单独发明的。这篇定义适应性理性均衡：交易者从一组预测里，按公开的过去表现做选择，选择强度高时会把价格推进复杂动态。文中的例子是蛛网模型里的理性预期对天真预期，不是 1998 年资产定价里的基本面交易者对趋势交易者。</p>
+          <p>1998 年 case 1 把这套离散选择写成类型差 <code>m = tanh(β/2 · 利润差)</code>，再配上 Walras 出清。原型每一期都做这件事。平台只在每个交易日收盘后用同一个公式改下一日的策略权重。</p>
+        </section>
+        <section class="note-section" id="read">
+          <h2>03. 打开时看什么</h2>
+          <ul>
+            <li>强度 <code>β</code> 和适应度（过去利润）怎样进入选择概率。</li>
+            <li>信息成本怎样让昂贵的理性预测在高强度下被放弃。</li>
+            <li>不要把蛛网的价格方程抄成 case 1 的 (4.7a)。</li>
+          </ul>
+        </section>
+        <footer class="note-footer">Status: To Read · 2026-11-02</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

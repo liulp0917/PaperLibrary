@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Heterogeneous beliefs and routes to chaos in a simple asset pricing model 阅读笔记。">
+  <title>Heterogeneous beliefs and routes to chaos in a simple asset pricing model · Reading Note</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('paper-library-theme') || 'dark';</script>
+  <link rel="stylesheet" href="../../../assets/css/notes.css">
+  <script src="../../../assets/js/note.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+  <div class="ambient ambient--gold" aria-hidden="true"></div>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="../../../">← Paper Library</a>
+      <div class="note-header__actions">
+        <a href="https://doi.org/10.1016/S0165-1889(98)00011-6" target="_blank" rel="noreferrer">Original Paper</a>
+        <button class="theme-toggle" type="button" aria-label="切换明暗主题"><span class="theme-toggle__sun">☀</span><span class="theme-toggle__moon">☾</span></button>
+      </div>
+    </header>
+    <div class="note-layout">
+      <nav class="note-toc" aria-label="笔记目录">
+        <strong>ON THIS PAGE</strong>
+        <a href="#bibliography">01 书目与版本</a>
+        <a href="#where">02 这次重读的位置</a>
+        <a href="#case1">03 Case 1 映射</a>
+        <a href="#boundary">04 和平台实验的边界</a>
+        <a href="#reread">05 重读时核对</a>
+      </nav>
+      <main class="note-article">
+        <header class="note-hero">
+          <p class="note-kicker">Reading · Brock–Hommes case 1</p>
+          <h1>Heterogeneous beliefs and routes to chaos in a simple asset pricing model</h1>
+          <p class="note-meta"><span>William A. Brock, Cars H. Hommes</span><span>Journal of Economic Dynamics and Control</span><span>1998</span></p>
+          <div class="draft-banner">状态：阅读中。第 4.1.2 节 case 1 的确定性骨架已经在原型里核对；全文重读还没完成。</div>
+        </header>
+        <section class="note-section" id="bibliography">
+          <h2>01. 书目与阅读版本</h2>
+          <p><strong>书目。</strong> William A. Brock、Cars H. Hommes，<em>Heterogeneous beliefs and routes to chaos in a simple asset pricing model</em>，Journal of Economic Dynamics and Control 22(8–9):1235–1274，1998，<a href="https://doi.org/10.1016/S0165-1889(98)00011-6" target="_blank" rel="noreferrer">DOI 10.1016/S0165-1889(98)00011-6</a>。可直接翻的全文在 <a href="http://research.economics.unsw.edu.au/vpanchenko/teaching/bh.pdf" target="_blank" rel="noreferrer">这份 PDF</a>。份额切换的规则来自 1997 年 Econometrica 那篇，例子是蛛网模型，不是这里的资产定价映射。</p>
+        </section>
+        <section class="note-section" id="where">
+          <h2>02. 这次重读的位置</h2>
+          <p>直接看第 4.1.2 节 case 1，加上引理 2、引理 4 和图 3。Case 1 没有股利噪声。参数是趋势系数 <code>g = 1.2</code>、总收益 <code>R = 1.1</code>、基本面成本 <code>C = 1</code>、风险尺度 <code>D = 1</code>，变化的是选择强度 <code>β</code>。一期是一个出清价，并且用这个价更新一次类型差。图 3 丢掉的是前几千步映射迭代，不是日内的撮合步。</p>
+        </section>
+        <section class="note-section" id="case1">
+          <h2>03. Case 1 映射</h2>
+          <p>状态是 <code>(x<sub>t−1</sub>, x<sub>t−2</sub>, m<sub>t−1</sub>)</code>。<code>x</code> 是相对基本面的偏离，<code>m = n<sub>1</sub> − n<sub>2</sub></code>。基本面交易者预测偏离为 0，趋势交易者预测 <code>g x<sub>t−1</sub></code>。出清 (4.7a) 在外部供给为 0 时写成 <code>R x<sub>t</sub> = n<sub>2,t−1</sub> g x<sub>t−1</sub></code>。看到 <code>x<sub>t</sub></code> 之后，(4.7d) 用上一期利润更新</p>
+          <div class="equation">m<sub>t</sub> = tanh( β/2 [ −D g x<sub>t−2</sub> (x<sub>t</sub> − R x<sub>t−1</sub>) − C ] )</div>
+          <p>记忆为 0。从静止偏离出发，出清把价格留在 0。引理 2 的叉形在 <code>β* = 2 artanh(5/6) ≈ 2.398</code>，非零稳态的类型差是 <code>m* = −5/6</code>。<code>β = 3</code> 的稳态偏离约为 1.293。复乘子在 <code>β<sub>H</sub> ≈ 3.331</code> 穿出单位圆，这是 Hopf。引理 4 说明 <code>β</code> 很大时轨道可以贴住不稳定的基本面，扫描里 <code>β ≥ 5</code> 回到 0 不要读成叉形被撤销。</p>
+        </section>
+        <section class="note-section" id="boundary">
+          <h2>04. 和平台实验的边界</h2>
+          <p>原型迭代的是上面这张映射。平台实验只把 (4.7d) 接到日收盘：用收盘偏离改下一日两个策略的混合权重。平台的基本面核和动量核不是“预测偏离为 0”和“预测 <code>g x</code>”，出清也是限价订单簿加 ±10% 涨跌停。一个交易日大约 1000 次撮合，共用同一组权重。所以平台的 15 个交易日是 15 次份额更新，对不上图 3 丢掉前 4000 步之后的轨道。</p>
+        </section>
+        <section class="note-section" id="reread">
+          <h2>05. 重读时核对</h2>
+          <ul>
+            <li>4.1.2 节两种预测和需求，是否就是 <code>z<sub>1</sub> = −D R x</code>、<code>z<sub>2</sub> = D(g x<sub>t−1</sub> − R x)</code>。</li>
+            <li>图 3 丢掉的步数、Hopf 的位置，以及 <code>β &gt; 3.55</code> 弱混沌是图示还是正文结论。</li>
+            <li>四类交易者和带股利噪声的情形先不并进这次 case 1。</li>
+          </ul>
+          <p><strong>证据定位：</strong><a href="http://research.economics.unsw.edu.au/vpanchenko/teaching/bh.pdf" target="_blank" rel="noreferrer">JEDC 1998 全文，第 4.1.2 节、引理 2、引理 4、图 3</a>。</p>
+        </section>
+        <footer class="note-footer">Status: Reading · 2026-11-02</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
